@@ -29,9 +29,10 @@ interface TaskListProps {
   tasks: Task[];
   onDelete: (id: string) => void;
   isLoading?: boolean;
+  isReadOnly?: boolean;
 }
 
-export function TaskList({ tasks, onDelete, isLoading = false }: TaskListProps) {
+export function TaskList({ tasks, onDelete, isLoading = false, isReadOnly = false }: TaskListProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
 
@@ -131,21 +132,23 @@ export function TaskList({ tasks, onDelete, isLoading = false }: TaskListProps) 
                       <CardDescription className="mt-1">{task.description}</CardDescription>
                     </div>
                   </div>
-                  <div className="flex gap-2">
-                    <Link href={`/tasks/${task.id}`}>
-                      <Button variant="outline" size="sm">
-                        <Edit2 className="h-4 w-4" />
+                  {!isReadOnly && (
+                    <div className="flex gap-2">
+                      <Link href={`/tasks/${task.id}`}>
+                        <Button variant="outline" size="sm">
+                          <Edit2 className="h-4 w-4" />
+                        </Button>
+                      </Link>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => onDelete(task.id)}
+                        className="text-red-600 hover:text-red-700"
+                      >
+                        <Trash2 className="h-4 w-4" />
                       </Button>
-                    </Link>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => onDelete(task.id)}
-                      className="text-red-600 hover:text-red-700"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
+                    </div>
+                  )}
                 </div>
               </CardHeader>
               {task.dueDate && (

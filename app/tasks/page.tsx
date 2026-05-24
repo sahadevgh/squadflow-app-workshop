@@ -2,19 +2,31 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useRole } from '@/app/context/role-context';
 import { TaskList } from '@/components/task-list';
+import { LearnerTaskView } from '@/components/learner-task-view';
 import { Button } from '@/components/ui/button';
-import { fetchTasks, deleteTask } from '@/lib/api-client';
+import { Card, CardContent } from '@/components/ui/card';
+import { fetchTasks, deleteTask, fetchLearners } from '@/lib/api-client';
 import { toast } from 'sonner';
 import { Plus } from 'lucide-react';
 
 export default function TasksPage() {
+  const { role, selectedLearnerId } = useRole();
+  const router = useRouter();
   const [tasks, setTasks] = useState<any[]>([]);
+  const [learner, setLearner] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Redirect learner to dashboard if trying to access tasks page
+    if (role === 'learner') {
+      router.push('/dashboard');
+      return;
+    }
     loadTasks();
-  }, []);
+  }, [role, router]);
 
   const loadTasks = async () => {
     setIsLoading(true);
@@ -40,6 +52,16 @@ export default function TasksPage() {
       toast.error('Failed to delete task');
     }
   };
+
+  if (isLoading) {
+    return (
+      <main className="min-h-screen bg-background">
+        <div className="container mx-auto px-4 py-8">
+          <p className="text-center text-muted-foreground">Loading...</p>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-background">

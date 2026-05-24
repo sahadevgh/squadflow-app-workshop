@@ -1,19 +1,28 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useRole } from '@/app/context/role-context';
 import { LearnerProgress } from '@/components/learner-progress';
 import { fetchLearners, fetchLearnerProgress } from '@/lib/api-client';
 import { toast } from 'sonner';
 import { Card, CardContent } from '@/components/ui/card';
 
 export default function LearnersPage() {
+  const { role } = useRole();
+  const router = useRouter();
   const [learners, setLearners] = useState<any[]>([]);
   const [progressData, setProgressData] = useState<Map<string, any>>(new Map());
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Redirect learner to dashboard if trying to access learners page
+    if (role === 'learner') {
+      router.push('/dashboard');
+      return;
+    }
     loadLearners();
-  }, []);
+  }, [role, router]);
 
   const loadLearners = async () => {
     setIsLoading(true);

@@ -1,6 +1,22 @@
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useRole } from '@/app/context/role-context';
 import { SystemDiagram } from '@/components/system-diagram';
 
 export default function SystemMapPage() {
+  const { role } = useRole();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect learner to dashboard if trying to access system map page
+    if (role === 'learner') {
+      router.push('/dashboard');
+      return;
+    }
+  }, [role, router]);
+
   return (
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">

@@ -31,7 +31,7 @@
     {
       "title": "Deploy app to Vercel",
       "description": "Learn how to deploy Next.js apps",
-      "status": "todo",
+      "status": "in-progress",
       "assignedTo": [
         "98d7ecdd-59a5-488c-8221-2cc6449fcb5e"
       ],
@@ -39,12 +39,12 @@
       "dueDate": "2026-05-31",
       "id": "21c3b0d7-b539-4b58-aa74-5894af3957a3",
       "createdAt": "2026-05-24T20:01:06.876Z",
-      "updatedAt": "2026-05-24T20:01:06.876Z"
+      "updatedAt": "2026-05-24T20:27:39.858Z"
     },
     {
       "title": "Study TypeScript basics",
       "description": "Learn types, interfaces, and generics",
-      "status": "in-progress",
+      "status": "completed",
       "assignedTo": [
         "4a67a528-07c8-41e0-9355-70da69178117",
         "98d7ecdd-59a5-488c-8221-2cc6449fcb5e"
@@ -53,7 +53,7 @@
       "dueDate": "2026-05-25",
       "id": "b4e4ab0d-b228-4b99-afa1-92f1d63739d7",
       "createdAt": "2026-05-24T20:01:06.876Z",
-      "updatedAt": "2026-05-24T20:01:06.876Z"
+      "updatedAt": "2026-05-24T20:27:31.295Z"
     },
     {
       "title": "Review code best practices",
