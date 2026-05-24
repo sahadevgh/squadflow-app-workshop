@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from 'sonner'
+import { RoleProvider } from './context/role-context'
+import { AppNav } from '@/components/app-nav'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -39,30 +40,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased">
-        <nav className="border-b bg-background sticky top-0 z-50">
-          <div className="container mx-auto px-4 flex h-16 items-center justify-between">
-            <Link href="/" className="font-bold text-lg hover:text-accent transition-colors">
-              SquadFlow
-            </Link>
-            <div className="flex gap-6 items-center">
-              <Link href="/dashboard" className="text-sm hover:text-foreground/80 transition-colors">
-                Dashboard
-              </Link>
-              <Link href="/tasks" className="text-sm hover:text-foreground/80 transition-colors">
-                Tasks
-              </Link>
-              <Link href="/learners" className="text-sm hover:text-foreground/80 transition-colors">
-                Learners
-              </Link>
-              <Link href="/system-map" className="text-sm hover:text-foreground/80 transition-colors">
-                System
-              </Link>
-            </div>
-          </div>
-        </nav>
-        {children}
-        <Toaster />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <RoleProvider>
+          <AppNav />
+          {children}
+          <Toaster />
+          {process.env.NODE_ENV === 'production' && <Analytics />}
+        </RoleProvider>
       </body>
     </html>
   )

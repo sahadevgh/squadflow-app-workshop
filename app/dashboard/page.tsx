@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRole } from '@/app/context/role-context';
 import { DashboardCards } from '@/components/dashboard-cards';
 import { TaskList } from '@/components/task-list';
+import { LearnerDashboard } from '@/components/learner-dashboard';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Plus } from 'lucide-react';
@@ -11,6 +13,7 @@ import { fetchDashboardSummary, fetchTasks, deleteTask } from '@/lib/api-client'
 import { toast } from 'sonner';
 
 export default function Dashboard() {
+  const { role, selectedLearnerId } = useRole();
   const [summary, setSummary] = useState<any>(null);
   const [tasks, setTasks] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,6 +51,17 @@ export default function Dashboard() {
     }
   };
 
+  // Show learner dashboard if in learner mode
+  if (role === 'learner' && selectedLearnerId) {
+    return (
+      <main className="min-h-screen bg-background">
+        <div className="container mx-auto px-4 py-8">
+          <LearnerDashboard learnerId={selectedLearnerId} />
+        </div>
+      </main>
+    );
+  }
+
   if (isLoading) {
     return (
       <main className="min-h-screen bg-background">
@@ -58,6 +72,7 @@ export default function Dashboard() {
     );
   }
 
+  // Admin dashboard
   return (
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
