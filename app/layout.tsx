@@ -41,11 +41,11 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <nav className="border-b bg-background sticky top-0 z-50">
           <div className="container mx-auto px-4 flex h-16 items-center justify-between">
-            <Link href="/" className="font-bold text-lg">
+            <Link href="/" className="font-bold text-lg hover:text-accent transition-colors">
               SquadFlow
             </Link>
             <div className="flex gap-6 items-center">
-              <Link href="/" className="text-sm hover:text-foreground/80 transition-colors">
+              <Link href="/dashboard" className="text-sm hover:text-foreground/80 transition-colors">
                 Dashboard
               </Link>
               <Link href="/tasks" className="text-sm hover:text-foreground/80 transition-colors">
