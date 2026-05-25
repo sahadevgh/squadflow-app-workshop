@@ -26,19 +26,25 @@ router.get('/tasks/:id', (req, res) => {
 });
 // POST /api/tasks - Create new task
 router.post('/tasks', (req, res) => {
-    const { title, description, assignedTo, priority, dueDate } = req.body;
-    if (!title || !description) {
-        return res.status(400).json({ error: 'Title and description are required' });
+    try {
+        const { title, description, assignedTo, priority, dueDate } = req.body;
+        if (!title || !description) {
+            return res.status(400).json({ error: 'Title and description are required' });
+        }
+        const task = createTask({
+            title,
+            description,
+            status: 'todo',
+            assignedTo: Array.isArray(assignedTo) ? assignedTo : [],
+            priority: priority || 'medium',
+            dueDate: dueDate || '',
+        });
+        res.status(201).json(task);
     }
-    const task = createTask({
-        title,
-        description,
-        status: 'todo',
-        assignedTo: assignedTo || [],
-        priority: priority || 'medium',
-        dueDate: dueDate || '',
-    });
-    res.status(201).json(task);
+    catch (error) {
+        console.error('Error creating task:', error);
+        res.status(500).json({ error: 'Server failed to create task' });
+    }
 });
 // PUT /api/tasks/:id - Update task
 router.put('/tasks/:id', (req, res) => {

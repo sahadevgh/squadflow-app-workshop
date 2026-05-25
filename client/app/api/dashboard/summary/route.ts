@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     const summary = await res.json();
     return NextResponse.json(summary);
   } catch (error) {
-    console.error('[v0] Error in GET /api/dashboard/summary:', error);
+    console.error('Error in GET /api/dashboard/summary:', error);
     return NextResponse.json(
       { error: 'Backend server unavailable while fetching dashboard summary' },
       { status: 503 }

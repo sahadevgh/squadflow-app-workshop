@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     const learners = await res.json();
     return NextResponse.json(learners);
   } catch (error) {
-    console.error('[v0] Error in GET /api/learners:', error);
+    console.error('Error in GET /api/learners:', error);
     return NextResponse.json(
       { error: 'Backend server unavailable while fetching learners' },
       { status: 503 }
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     const learner = await res.json();
     return NextResponse.json(learner, { status: 201 });
   } catch (error) {
-    console.error('[v0] Error in POST /api/learners:', error);
+    console.error('Error in POST /api/learners:', error);
     return NextResponse.json(
       { error: 'Backend server unavailable while creating learner' },
       { status: 503 }

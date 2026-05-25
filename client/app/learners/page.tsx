@@ -55,13 +55,13 @@ export default function LearnersPage() {
           const learnerProgress = await fetchLearnerProgress(learner.id);
           progress.set(learner.id, learnerProgress);
         } catch (error) {
-          console.error('[v0] Error loading progress for learner:', learner.id);
+          console.error('Error loading progress for learner:', learner.id);
         }
       }
       setProgressData(progress);
-      console.log('[v0] Learners loaded:', learnersData.length);
+      console.log('Learners loaded:', learnersData.length);
     } catch (error) {
-      console.error('[v0] Error loading learners:', error);
+      console.error('Error loading learners:', error);
       toast.error('Failed to load learners');
     } finally {
       setIsLoading(false);
@@ -85,7 +85,7 @@ export default function LearnersPage() {
       setIsCreateOpen(false);
       await loadLearners();
     } catch (error) {
-      console.error('[v0] Error creating learner:', error);
+      console.error('Error creating learner:', error);
       toast.error('Failed to create learner');
     } finally {
       setIsSubmitting(false);

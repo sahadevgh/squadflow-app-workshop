@@ -28,23 +28,23 @@ app.get('/health', (req, res) => {
 });
 // Start server
 const server = app.listen(PORT, () => {
-    console.log(`[v0] Express server is running on http://localhost:${PORT}`);
-    console.log(`[v0] API endpoints available at http://localhost:${PORT}/api/*`);
+    console.log(`Express server is running on http://localhost:${PORT}`);
+    console.log(`API endpoints available at http://localhost:${PORT}/api/*`);
     // Seed database if data.json doesn't exist
-    const dbPath = path.resolve(__dirname, '..', 'data.json');
+    const dbPath = path.resolve(__dirname, '..', '..', 'database', 'data.json');
     if (!fs.existsSync(dbPath)) {
-        console.log('[v0] First run detected - seeding database with sample data');
+        console.log('First run detected - seeding database with sample data');
         seedDatabase();
     }
     else {
-        console.log('[v0] Using existing database at', dbPath);
+        console.log('Using existing database at', dbPath);
     }
 });
 // Graceful shutdown
 process.on('SIGTERM', () => {
-    console.log('[v0] SIGTERM received, shutting down gracefully');
+    console.log('SIGTERM received, shutting down gracefully');
     server.close(() => {
-        console.log('[v0] Express server closed');
+        console.log('Express server closed');
         process.exit(0);
     });
 });

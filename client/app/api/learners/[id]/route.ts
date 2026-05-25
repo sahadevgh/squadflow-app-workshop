@@ -28,7 +28,7 @@ export async function GET(
     const learner = await res.json();
     return NextResponse.json(learner);
   } catch (error) {
-    console.error('[v0] Error in GET /api/learners/:id:', error);
+    console.error('Error in GET /api/learners/:id:', error);
     return NextResponse.json(
       { error: 'Backend server unavailable while fetching learner' },
       { status: 503 }

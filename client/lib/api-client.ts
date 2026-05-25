@@ -29,7 +29,7 @@ export async function fetchTasks(status?: string): Promise<any[]> {
     if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to fetch tasks'));
     return res.json();
   } catch (error) {
-    console.error('[v0] Error fetching tasks:', error);
+    console.error('Error fetching tasks:', error);
     throw error;
   }
 }
@@ -40,7 +40,7 @@ export async function fetchTask(id: string): Promise<any> {
     if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to fetch task'));
     return res.json();
   } catch (error) {
-    console.error('[v0] Error fetching task:', error);
+    console.error('Error fetching task:', error);
     throw error;
   }
 }
@@ -61,7 +61,7 @@ export async function createTask(task: {
     if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to create task'));
     return res.json();
   } catch (error) {
-    console.error('[v0] Error creating task:', error);
+    console.error('Error creating task:', error);
     throw error;
   }
 }
@@ -76,7 +76,7 @@ export async function updateTask(id: string, updates: Partial<any>): Promise<any
     if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to update task'));
     return res.json();
   } catch (error) {
-    console.error('[v0] Error updating task:', error);
+    console.error('Error updating task:', error);
     throw error;
   }
 }
@@ -88,7 +88,7 @@ export async function deleteTask(id: string): Promise<void> {
     });
     if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to delete task'));
   } catch (error) {
-    console.error('[v0] Error deleting task:', error);
+    console.error('Error deleting task:', error);
     throw error;
   }
 }
@@ -101,7 +101,7 @@ export async function fetchLearners(): Promise<any[]> {
     if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to fetch learners'));
     return res.json();
   } catch (error) {
-    console.error('[v0] Error fetching learners:', error);
+    console.error('Error fetching learners:', error);
     throw error;
   }
 }
@@ -112,7 +112,7 @@ export async function fetchLearner(id: string): Promise<any> {
     if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to fetch learner'));
     return res.json();
   } catch (error) {
-    console.error('[v0] Error fetching learner:', error);
+    console.error('Error fetching learner:', error);
     throw error;
   }
 }
@@ -123,7 +123,7 @@ export async function fetchLearnerProgress(id: string): Promise<any> {
     if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to fetch learner progress'));
     return res.json();
   } catch (error) {
-    console.error('[v0] Error fetching learner progress:', error);
+    console.error('Error fetching learner progress:', error);
     throw error;
   }
 }
@@ -141,7 +141,7 @@ export async function createLearner(learner: {
     if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to create learner'));
     return res.json();
   } catch (error) {
-    console.error('[v0] Error creating learner:', error);
+    console.error('Error creating learner:', error);
     throw error;
   }
 }
@@ -154,7 +154,7 @@ export async function fetchDashboardSummary(): Promise<any> {
     if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to fetch dashboard summary'));
     return res.json();
   } catch (error) {
-    console.error('[v0] Error fetching dashboard summary:', error);
+    console.error('Error fetching dashboard summary:', error);
     throw error;
   }
 }

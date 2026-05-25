@@ -28,7 +28,7 @@ export async function GET(
     const task = await res.json();
     return NextResponse.json(task);
   } catch (error) {
-    console.error('[v0] Error in GET /api/tasks/:id:', error);
+    console.error('Error in GET /api/tasks/:id:', error);
     return NextResponse.json(
       { error: 'Backend server unavailable while fetching task' },
       { status: 503 }
@@ -67,7 +67,7 @@ export async function PUT(
     const task = await res.json();
     return NextResponse.json(task);
   } catch (error) {
-    console.error('[v0] Error in PUT /api/tasks/:id:', error);
+    console.error('Error in PUT /api/tasks/:id:', error);
     return NextResponse.json(
       { error: 'Backend server unavailable while updating task' },
       { status: 503 }
@@ -103,7 +103,7 @@ export async function DELETE(
     const data = await res.json().catch(() => ({ success: true, id }));
     return NextResponse.json(data);
   } catch (error) {
-    console.error('[v0] Error in DELETE /api/tasks/:id:', error);
+    console.error('Error in DELETE /api/tasks/:id:', error);
     return NextResponse.json(
       { error: 'Backend server unavailable while deleting task' },
       { status: 503 }

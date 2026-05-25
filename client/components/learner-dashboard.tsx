@@ -56,7 +56,7 @@ export function LearnerDashboard({ learnerId }: { learnerId: string }) {
       setLearner(learnerData);
       setTasks(learnerTasks);
     } catch (error) {
-      console.error('[v0] Failed to load learner data:', error);
+      console.error('Failed to load learner data:', error);
       toast.error('Failed to load your tasks');
     } finally {
       setIsLoading(false);
@@ -79,7 +79,7 @@ export function LearnerDashboard({ learnerId }: { learnerId: string }) {
 
       toast.success(`Task moved to ${newStatus.replace('-', ' ')}`);
     } catch (error) {
-      console.error('[v0] Error updating task:', error);
+      console.error('Error updating task:', error);
       toast.error('Failed to update task');
     }
   };

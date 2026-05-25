@@ -27,7 +27,7 @@ function RoleSwitcherContent() {
         return data;
       })
       .then(data => setLearners(Array.isArray(data) ? data : []))
-      .catch(err => console.error('[v0] Failed to fetch learners:', err));
+      .catch(err => console.error('Failed to fetch learners:', err));
   }, []);
 
   const selectedLearner = learners.find(l => l.id === selectedLearnerId);

@@ -31,9 +31,9 @@ export default function Dashboard() {
       ]);
       setSummary(summaryData);
       setTasks(tasksData);
-      console.log('[v0] Dashboard data loaded');
+      console.log('Dashboard data loaded');
     } catch (error) {
-      console.error('[v0] Error loading dashboard:', error);
+      console.error('Error loading dashboard:', error);
       toast.error('Failed to load dashboard data');
     } finally {
       setIsLoading(false);
@@ -46,7 +46,7 @@ export default function Dashboard() {
       setTasks(tasks.filter(t => t.id !== id));
       toast.success('Task deleted successfully');
     } catch (error) {
-      console.error('[v0] Error deleting task:', error);
+      console.error('Error deleting task:', error);
       toast.error('Failed to delete task');
     }
   };

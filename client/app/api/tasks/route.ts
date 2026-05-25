@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     const tasks = await res.json();
     return NextResponse.json(tasks);
   } catch (error) {
-    console.error('[v0] Error in GET /api/tasks:', error);
+    console.error('Error in GET /api/tasks:', error);
     return NextResponse.json(
       { error: 'Backend server unavailable while fetching tasks' },
       { status: 503 }
@@ -41,8 +41,9 @@ export async function POST(request: NextRequest) {
     });
 
     if (!res.ok) {
+      const errorBody = await res.json().catch(() => null);
       return NextResponse.json(
-        { error: 'Failed to create task on server' },
+        { error: errorBody?.error || 'Failed to create task on server' },
         { status: res.status }
       );
     }
@@ -50,7 +51,7 @@ export async function POST(request: NextRequest) {
     const task = await res.json();
     return NextResponse.json(task, { status: 201 });
   } catch (error) {
-    console.error('[v0] Error in POST /api/tasks:', error);
+    console.error('Error in POST /api/tasks:', error);
     return NextResponse.json(
       { error: 'Backend server unavailable while creating task' },
       { status: 503 }

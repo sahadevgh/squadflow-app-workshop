@@ -21,9 +21,9 @@ export default function EditTaskPage() {
     try {
       const data = await fetchTask(taskId);
       setTask(data);
-      console.log('[v0] Task loaded:', taskId);
+      console.log('Task loaded:', taskId);
     } catch (error) {
-      console.error('[v0] Error loading task:', error);
+      console.error('Error loading task:', error);
       toast.error('Failed to load task');
     } finally {
       setIsLoading(false);

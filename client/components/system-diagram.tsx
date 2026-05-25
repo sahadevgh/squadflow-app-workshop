@@ -60,7 +60,7 @@ export function SystemDiagram() {
                 </div>
                 <div className="flex-1">
                   <h4 className="font-semibold text-sm">Data Storage (File-based JSON)</h4>
-                  <p className="text-sm text-muted-foreground">server/data.json - Easy to inspect</p>
+                  <p className="text-sm text-muted-foreground">database/data.json - Easy to inspect</p>
                 </div>
               </div>
             </div>
@@ -98,7 +98,7 @@ export function SystemDiagram() {
 
                 <div className="bg-amber-50 rounded p-3">
                   <p className="font-medium text-amber-900">4. Data is persisted</p>
-                  <p className="text-amber-700">db.ts saves task to server/data.json file</p>
+                  <p className="text-amber-700">db.ts saves task to database/data.json</p>
                 </div>
 
                 <div className="flex justify-center">
@@ -131,7 +131,7 @@ export function SystemDiagram() {
               </div>
               <div>
                 <p className="font-medium">File-Based Storage</p>
-                <p className="text-muted-foreground">Data is stored in server/data.json - inspect it to understand the database structure</p>
+                <p className="text-muted-foreground">Data is stored in database/data.json - inspect it to understand the database structure</p>
               </div>
             </div>
           </div>

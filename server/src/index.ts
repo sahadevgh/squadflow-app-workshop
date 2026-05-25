@@ -40,7 +40,7 @@ const server = app.listen(PORT, () => {
   console.log(`API endpoints available at http://localhost:${PORT}/api/*`);
 
   // Seed database if data.json doesn't exist
-  const dbPath = path.resolve(__dirname, '..', 'data.json');
+  const dbPath = path.resolve(__dirname, '..', '..', 'database', 'data.json');
   if (!fs.existsSync(dbPath)) {
     console.log('First run detected - seeding database with sample data');
     seedDatabase();

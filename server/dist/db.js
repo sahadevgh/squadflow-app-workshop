@@ -4,25 +4,34 @@ import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from 'uuid';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const DB_PATH = path.resolve(__dirname, '..', 'data.json');
+const DB_PATH = path.resolve(__dirname, '..', '..', 'database', 'data.json');
+function normalizeDatabase(data) {
+    const candidate = (data && typeof data === 'object') ? data : {};
+    return {
+        tasks: Array.isArray(candidate.tasks) ? candidate.tasks : [],
+        learners: Array.isArray(candidate.learners) ? candidate.learners : [],
+    };
+}
 // Initialize or read database
 function initializeDB() {
     try {
         if (fs.existsSync(DB_PATH)) {
             const data = fs.readFileSync(DB_PATH, 'utf-8');
-            return JSON.parse(data);
+            return normalizeDatabase(JSON.parse(data));
         }
     }
     catch {
-        console.log('[v0] Could not read existing database, creating new one');
+        console.log('Could not read existing database, creating new one');
     }
     // Return empty database
     return { tasks: [], learners: [] };
 }
 // Save database to file
 export function saveDB(db) {
-    fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 2));
-    console.log('[v0] Database saved to', DB_PATH);
+    const normalized = normalizeDatabase(db);
+    fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
+    fs.writeFileSync(DB_PATH, JSON.stringify(normalized, null, 2));
+    console.log('Database saved to', DB_PATH);
 }
 // Get all data
 let db = initializeDB();
@@ -30,7 +39,7 @@ export function getDatabase() {
     return db;
 }
 export function setDatabase(newDb) {
-    db = newDb;
+    db = normalizeDatabase(newDb);
     saveDB(db);
 }
 // Task operations
@@ -49,7 +58,7 @@ export function createTask(task) {
     };
     db.tasks.push(newTask);
     saveDB(db);
-    console.log('[v0] Task created:', newTask.id);
+    console.log('Task created:', newTask.id);
     return newTask;
 }
 export function updateTask(id, updates) {
@@ -66,7 +75,7 @@ export function updateTask(id, updates) {
     const index = db.tasks.findIndex(t => t.id === id);
     db.tasks[index] = updated;
     saveDB(db);
-    console.log('[v0] Task updated:', id);
+    console.log('Task updated:', id);
     return updated;
 }
 export function deleteTask(id) {
@@ -75,7 +84,7 @@ export function deleteTask(id) {
         return false;
     db.tasks.splice(index, 1);
     saveDB(db);
-    console.log('[v0] Task deleted:', id);
+    console.log('Task deleted:', id);
     return true;
 }
 // Learner operations
@@ -93,7 +102,7 @@ export function createLearner(learner) {
     };
     db.learners.push(newLearner);
     saveDB(db);
-    console.log('[v0] Learner created:', newLearner.id);
+    console.log('Learner created:', newLearner.id);
     return newLearner;
 }
 // Calculate learner progress

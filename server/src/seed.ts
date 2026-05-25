@@ -1,7 +1,7 @@
 import { createTask, createLearner } from './db.js';
 
 export function seedDatabase() {
-  console.log('[v0] Seeding database with sample data...');
+  console.log('Seeding database with sample data...');
 
   // Create learners
   const learner1 = createLearner({
@@ -93,5 +93,5 @@ export function seedDatabase() {
     dueDate: nextWeek.toISOString().split('T')[0],
   });
 
-  console.log('[v0] Database seeding complete!');
+  console.log('Database seeding complete!');
 }

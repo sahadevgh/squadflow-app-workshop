@@ -25,7 +25,7 @@ API Route Handlers (validate & process requests)
     ↓
 Database Operations (server/db.ts - read/write to data.json)
     ↓
-File Storage (server/data.json - JSON file)
+File Storage (database/data.json - JSON file)
 ```
 
 ### The Layers
@@ -44,7 +44,7 @@ File Storage (server/data.json - JSON file)
    - Manages data persistence
 
 3. **Data Storage (File-based JSON)**
-   - Simple JSON file at `server/data.json`
+   - Simple JSON file at `database/data.json`
    - Easy to inspect and understand
    - Perfect for learning (no database setup needed)
    - Contains all tasks and learners
@@ -94,8 +94,10 @@ File Storage (server/data.json - JSON file)
 ├── server/                       # Backend logic (shared with API routes)
 │   ├── db.ts                     # File-based database operations
 │   ├── seed.ts                   # Sample data generation
-│   ├── data.json                 # Database file (auto-created)
 │   └── index.ts                  # (Optional: Express server for standalone use)
+│
+├── database/
+│   └── data.json                 # Database file (auto-created)
 │
 ├── public/                       # Static files
 ├── package.json                  # Dependencies and scripts
@@ -133,10 +135,10 @@ File Storage (server/data.json - JSON file)
 
 When you first run the app:
 - Next.js starts the development server
-- On first page load, the API routes check if `server/data.json` exists
+- On first page load, the API routes check if `database/data.json` exists
 - If it doesn't exist, it runs `seed.ts` to create sample data
 - The sample data includes 3 learners and 7 tasks with realistic relationships
-- All data is stored in `server/data.json` - you can open and inspect it anytime
+- All data is stored in `database/data.json` - you can open and inspect it anytime
 
 ## 📊 API Endpoints
 
@@ -202,10 +204,10 @@ The Next.js API routes provide these REST API endpoints (all under `/api`):
 ### 3. **Client-Server Communication**
 - Frontend calls API endpoints using `fetch()` 
 - Backend receives requests and sends back JSON responses
-- CORS is handled so localhost:3000 can call localhost:5000
+- CORS is handled so localhost:3000 can call localhost:8000
 
 ### 4. **Data Persistence**
-- Data is saved to `server/data.json` automatically
+- Data is saved to `database/data.json` automatically
 - Open the file to see exactly how data is stored
 - Each operation reads and writes the entire file (simple, not efficient, but perfect for learning)
 
@@ -225,7 +227,7 @@ Let's trace what happens when you create a task:
    - Calls `createTask()` from `lib/api-client.ts`
 
 2. **Frontend sends request** → `lib/api-client.ts`
-   - Uses `fetch()` to POST to `http://localhost:5000/api/tasks`
+   - Uses `fetch()` to POST to `http://localhost:8000/api/tasks`
    - Sends task data as JSON
 
 3. **Backend receives request** → `server/routes.ts`
@@ -236,7 +238,7 @@ Let's trace what happens when you create a task:
    - Creates task with UUID and timestamps
    - Adds to tasks array
 
-5. **Backend persists** → `server/data.json`
+5. **Backend persists** → `database/data.json`
    - Writes entire database to JSON file
    - Logs operation to console
 
@@ -247,7 +249,7 @@ Let's trace what happens when you create a task:
 
 ### Inspecting the Database
 
-Open `server/data.json` in your editor to see:
+Open `database/data.json` in your editor to see:
 - All tasks and their current status
 - All learners and their information
 - The exact structure of the data
@@ -324,7 +326,7 @@ Each file contains comments explaining key concepts. The System Map page explain
 ## 📝 Notes
 
 - This uses file-based storage for simplicity. In production, use a real database.
-- CORS is configured to allow localhost:3000 to access localhost:5000
+- CORS is configured to allow localhost:3000 to access localhost:8000
 - The Express server auto-seeds data on first run
 - All timestamps use ISO 8601 format for consistency
 - UUIDs are used for unique IDs instead of sequential numbers (more realistic)

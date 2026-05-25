@@ -49,7 +49,7 @@ export function TaskForm({ taskId, initialTask, onSuccess }: TaskFormProps) {
     fetchLearners()
       .then(setLearners)
       .catch((error) => {
-        console.error('[v0] Error fetching learners:', error);
+        console.error('Error fetching learners:', error);
         toast.error('Failed to load learners');
       })
       .finally(() => setIsFetching(false));
@@ -97,7 +97,7 @@ export function TaskForm({ taskId, initialTask, onSuccess }: TaskFormProps) {
         router.push('/tasks');
       }
     } catch (error) {
-      console.error('[v0] Error saving task:', error);
+      console.error('Error saving task:', error);
       toast.error(taskId ? 'Failed to update task' : 'Failed to create task');
     } finally {
       setIsLoading(false);

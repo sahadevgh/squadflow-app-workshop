@@ -5,10 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useRole } from '@/app/context/role-context';
 import { TaskList } from '@/components/task-list';
-import { LearnerTaskView } from '@/components/learner-task-view';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { fetchTasks, deleteTask, fetchLearners } from '@/lib/api-client';
+import { fetchTasks, deleteTask } from '@/lib/api-client';
 import { toast } from 'sonner';
 import { Plus } from 'lucide-react';
 
@@ -33,9 +31,9 @@ export default function TasksPage() {
     try {
       const data = await fetchTasks();
       setTasks(data);
-      console.log('[v0] Tasks loaded:', data.length);
+      console.log('Tasks loaded:', data.length);
     } catch (error) {
-      console.error('[v0] Error loading tasks:', error);
+      console.error('Error loading tasks:', error);
       toast.error('Failed to load tasks');
     } finally {
       setIsLoading(false);
@@ -48,7 +46,7 @@ export default function TasksPage() {
       setTasks(tasks.filter(t => t.id !== id));
       toast.success('Task deleted successfully');
     } catch (error) {
-      console.error('[v0] Error deleting task:', error);
+      console.error('Error deleting task:', error);
       toast.error('Failed to delete task');
     }
   };

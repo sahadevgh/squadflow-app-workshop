@@ -1,9 +1,9 @@
 import { createTask, createLearner } from './db.js';
 export function seedDatabase() {
-    console.log('[v0] Seeding database with sample data...');
+    console.log('Seeding database with sample data...');
     // Create learners
     const learner1 = createLearner({
-        name: 'Dawuni Aabidat',
+        name: 'Aabidat Aliu',
         email: 'dawuni@example.com',
         tasksCompleted: 3,
         tasksAssigned: 5,
@@ -80,5 +80,5 @@ export function seedDatabase() {
         priority: 'low',
         dueDate: nextWeek.toISOString().split('T')[0],
     });
-    console.log('[v0] Database seeding complete!');
+    console.log('Database seeding complete!');
 }

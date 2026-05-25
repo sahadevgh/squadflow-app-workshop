@@ -22,7 +22,7 @@ export async function GET(
     const progress = await res.json();
     return NextResponse.json(progress);
   } catch (error) {
-    console.error('[v0] Error in GET /api/learners/:id/progress:', error);
+    console.error('Error in GET /api/learners/:id/progress:', error);
     return NextResponse.json(
       { error: 'Backend server unavailable while fetching learner progress' },
       { status: 503 }
