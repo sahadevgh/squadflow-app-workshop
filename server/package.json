@@ -1,0 +1,34 @@
+{
+  "name": "my-project",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "1.1.1",
+    "concurrently": "^9.2.1",
+    "date-fns": "4.1.0",
+    "embla-carousel-react": "8.6.0",
+    "express": "^5.2.1",
+    "uuid": "^14.0.0",
+    "vaul": "^1.1.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22",
+    "postcss": "^8.5",
+    "tailwindcss": "^4.2.0",
+    "tsx": "^4.22.3",
+    "tw-animate-css": "1.3.3",
+    "typescript": "5.7.3"
+  }
+}
